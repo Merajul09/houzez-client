@@ -4,7 +4,15 @@
 @tailwind utilities;
 
 :root {
-  --primary-bg: blueviolet;
+  --primary-bg: #a8aeaf;
+  --secondary-bg: #091a2b;
+  --primary-hover-bg: #073762;
+  --secondary-hover-bg: #3b4876;
+  --primary-text-color: #091a2b;
+  --secondary-text-color: #f1f3f4;
+  --primary-hover-text-color: #005163;
+  --secondary-hover-text-color: black;
+
 }
 
 .font-josefin {
@@ -15,6 +23,38 @@
 .font-lato {
   font-family: "Lato", sans-serif;
   font-optical-sizing: auto;
+}
+
+.primary-bg {
+  color: var(--primary-bg)
+}
+
+.secondary-bg {
+  color: var(--secondary-bg)
+}
+
+.primary-hover-bg {
+  color: var(--primary-hover-bg)
+}
+
+.secondary-hover-bg {
+  color: var(--secondary-hover-bg)
+}
+
+.primary-text-color {
+  color: var(--primary-text-color)
+}
+
+.secondary-text-color {
+  color: var(--secondary-text-color)
+}
+
+.primary-hover-text-color {
+  color: var(--primary-hover-text-color)
+}
+
+.secondary-hover-text-color {
+  color: var(--secondary-hover-text-color)
 }
 
 .swiper-slide img {
