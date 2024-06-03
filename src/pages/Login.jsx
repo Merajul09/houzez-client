@@ -93,24 +93,6 @@ const Login = () => {
                                 }</span>
                             </div>
                         </div>
-                        {/* <div className='mt-4'>
-                            <div className='flex justify-between'>
-                                <label
-                                    className='block mb-2 text-sm font-medium text-gray-600 '
-                                    htmlFor='loggingPassword'
-                                >
-                                    Password
-                                </label>
-                            </div>
-
-                            <input
-                                id='loggingPassword'
-                                autoComplete='current-password'
-                                name='password'
-                                className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-blue-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-blue-300'
-                                type='password'
-                            />
-                        </div> */}
                         <div className='mt-6'>
                             <button
                                 type='submit'
@@ -125,7 +107,7 @@ const Login = () => {
                         <span className='w-1/5 border-b  md:w-1/4'></span>
 
                         <Link
-                            to='/registration'
+                            to='/register'
                             className='text-xs text-gray-500 uppercase  hover:underline'
                         >
                             or sign up
