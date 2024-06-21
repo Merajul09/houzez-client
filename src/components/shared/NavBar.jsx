@@ -6,7 +6,6 @@ import useAuth from '../../hooks/useAuth'
 const Navbar = () => {
     const { user, logOut } = useAuth()
     const [isOpen, setIsOpen] = useState(false)
-
     return (
         <div className='fixed w-full z-10 bg-white shadow-sm'>
             <div className='py-4 border-b-[1px] container mx-auto'>
@@ -22,7 +21,7 @@ const Navbar = () => {
                             >
                                 Home
                             </Link>
-                            <Link to='/'
+                            <Link to='/all-properties'
                                 className='cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full transition'
                             >
                                 All properties
@@ -78,12 +77,12 @@ const Navbar = () => {
                                                 >
                                                     Dashboard
                                                 </Link>
-                                                <div
+                                                <a href='/'
                                                     onClick={logOut}
                                                     className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
                                                 >
                                                     Logout
-                                                </div>
+                                                </a>
                                             </>
                                         ) : (
                                             <>

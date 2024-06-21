@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../firebase/firebase.config";
 import PropTypes from 'prop-types';
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -26,29 +27,64 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider);
     }
 
-    const logOut = () => {
-        setLoading(true);
-        return signOut(auth);
+    const logOut = async () => {
+        setLoading(true)
+        // await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
+        //     withCredentials: true,
+        // })
+        return signOut(auth)
     }
 
     const updateUserProfile = (name, photo) => {
         return updateProfile(auth.currentUser, {
-            displayName: name, photoURL: photo
-        });
+            displayName: name,
+            photoURL: photo,
+        })
+    }
+    // Get token from server
+    const getToken = async (email) => {
+        const { data } = await axios.post(
+            `${import.meta.env.VITE_API_URL}/jwt`,
+            { email },
+            { withCredentials: true }
+        )
+        return data
     }
 
+    // save user
+    const saveUser = async (user) => {
+        const currentUser = {
+            email: user?.email,
+            role: 'guest',
+            status: 'Verified',
+        }
+        const { data } = await axios.put(
+            `${import.meta.env.VITE_API_URL}/user`,
+            currentUser
+        )
+        return data
+    }
+
+    // onAuthStateChange
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
-        });
+            setUser(currentUser)
+            if (currentUser) {
+                getToken(currentUser.email)
+                saveUser(currentUser)
+            }
+            setLoading(false)
+        })
         return () => {
-            return unsubscribe();
+            return unsubscribe()
         }
     }, [])
 
     const authInfo = {
         user,
+        setUser,
         loading,
+        setLoading,
         createUser,
         signIn,
         googleSignIn,

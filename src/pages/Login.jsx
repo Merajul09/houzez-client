@@ -1,29 +1,48 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import { Link, useNavigate } from "react-router-dom";
 import bgImg from "../assets/loginImage.jpg"
 import logo from "../assets/loginIcon.png"
-import toast from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const { signInUser, googleSignIn } = useAuth();
-    const navigate = useNavigate()
-    const handleLogin = e => {
+    const { user, signIn, googleSignIn, setLoading } = useAuth();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [navigate, user])
+    const from = location.state || '/'
+
+    const handleGoogleSignIn = async () => {
+        try {
+            await googleSignIn()
+            navigate(from)
+            toast.success('Signin Successful')
+        } catch (err) {
+            toast.error(err.message)
+        }
+    }
+
+    const handleLogin = async (e) => {
         e.preventDefault()
         const email = e.target.email.value;
         const password = e.target.password.value;
-        signInUser(email, password)
-            .then(() => {
-                toast.success('user successfully logged in')
-                navigate('/')
-            })
-            .catch(() => {
-                toast.error('email and password doesn`t match')
-            })
+        try {
+            setLoading(true)
+            await signIn(email, password)
+            navigate(from)
+            toast.success('Signin Successful')
+        } catch (err) {
+            toast.error('email and password doesn`t exist')
+            setLoading(false)
+        }
     }
+
     return (
         <div className='flex justify-center items-center min-h-[calc(100vh-306px)] pt-24'>
             <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
@@ -44,7 +63,7 @@ const Login = () => {
                     </p>
 
                     <div
-                        onClick={googleSignIn}
+                        onClick={handleGoogleSignIn}
                         className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '
                     >
                         <div className='px-4 py-2'>
