@@ -1,5 +1,7 @@
 import { BsFingerprint } from 'react-icons/bs'
 import { GrUserAdmin } from 'react-icons/gr'
+import { FaUsers } from "react-icons/fa";
+import { MdReviews } from "react-icons/md";
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import useAuth from '../../../../hooks/useAuth'
@@ -42,6 +44,16 @@ const GuestMenu = () => {
                 icon={BsFingerprint}
                 label='My Bookings'
                 address='my-bookings'
+            />
+            <MenuItem
+                icon={FaUsers}
+                label='My Wishlists'
+                address='my-wishlists'
+            />
+            <MenuItem
+                icon={MdReviews}
+                label='My Reviews'
+                address='my-reviews'
             />
 
             {role === 'guest' && (

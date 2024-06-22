@@ -13,6 +13,10 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import MyBookings from "../pages/Dashboard/Users/UserPropertyBought";
 import CardDetails from "../pages/Details page/CardDetails";
 import AllProperties from "../pages/AllProperties";
+import UserWishlist from "../pages/Dashboard/Users/UserWishlist";
+import UserReview from "../pages/Dashboard/Users/UserReview";
+import AdminRoute from "./AdminRoute";
+import AgentRoute from "./AgentRoute";
 
 export const router = createBrowserRouter([
     {
@@ -66,9 +70,9 @@ export const router = createBrowserRouter([
                 path: 'add-property',
                 element: (
                     <PrivateRoute>
-                        {/* <AgentRoute> */}
-                        <AddProperty />
-                        {/* </AgentRoute> */}
+                        <AgentRoute>
+                            <AddProperty />
+                        </AgentRoute>
                     </PrivateRoute>
                 ),
             },
@@ -76,9 +80,9 @@ export const router = createBrowserRouter([
                 path: 'my-listings',
                 element: (
                     <PrivateRoute>
-                        {/* <AgentRoute> */}
-                        <MyListings />
-                        {/* </AgentRoute> */}
+                        <AgentRoute>
+                            <MyListings />
+                        </AgentRoute>
                     </PrivateRoute>
                 ),
             },
@@ -91,12 +95,28 @@ export const router = createBrowserRouter([
                 ),
             },
             {
+                path: 'my-wishlists',
+                element: (
+                    <PrivateRoute>
+                        <UserWishlist />
+                    </PrivateRoute>
+                ),
+            },
+            {
+                path: 'my-reviews',
+                element: (
+                    <PrivateRoute>
+                        <UserReview />
+                    </PrivateRoute>
+                ),
+            },
+            {
                 path: 'manage-users',
                 element: (
                     <PrivateRoute>
-                        {/* <AdminRoute> */}
-                        <ManageUsers />
-                        {/* </AdminRoute> */}
+                        <AdminRoute>
+                            <ManageUsers />
+                        </AdminRoute>
                     </PrivateRoute>
                 ),
             }

@@ -21,8 +21,6 @@ const MyBookings = () => {
             return data
         },
     })
-
-    console.log(bookings)
     if (isLoading) return <Loader />
     return (
         <>
