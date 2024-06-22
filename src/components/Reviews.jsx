@@ -7,14 +7,14 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 
 const Reviews = () => {
+    const axiosPublic = useAxiosPublic()
     const { data: reviews = [] } = useQuery({
         queryKey: ['reviews'],
         queryFn: async () => {
-            const { data } = await useAxiosPublic.get(`/reviews`)
+            const { data } = await axiosPublic.get(`/reviews`)
             return data
         },
     })
-    console.log(reviews)
     return (
         <section className="my-20">
             <SectionTitle
@@ -34,9 +34,16 @@ const Reviews = () => {
                                 value={review.rating}
                                 readOnly
                             /> */}
+                            <p className="py-8">{review.title}</p>
+                            <div className="avatar">
+                                <div className="w-24 rounded-full object-contain">
+                                    <img src={review.reviewerImage} alt="Photo" />
+                                </div>
+                            </div>
                             <p className="py-8">{review.description}</p>
                             <h3 className="text-2xl text-orange-400">{review.reviewerName}</h3>
                         </div>
+
                     </SwiperSlide>)
                 }
             </Swiper>
