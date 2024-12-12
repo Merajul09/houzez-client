@@ -2,7 +2,7 @@
 
 Live site:
 
-- [Houzez-netlify]()
+- [Houzez-netlify](https://mh-assignment-twelve.netlify.app/)
 
 - [Server Repo](https://github.com/programming-hero-web-course1/b9a12-server-side-Merajul09)
 

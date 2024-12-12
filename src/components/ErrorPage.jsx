@@ -5,9 +5,9 @@ const ErrorPage = () => {
     const location = useLocation();
     useEffect(() => {
         if (location.pathname === '/') {
-            // document.title = `Assignment Twelve`
+            document.title = `your title`
         } else {
-            document.title = `Error Page | ${location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2)}`
+            document.title = `Error Page || ${location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2)}`
         }
     }, [location.pathname])
     return (
