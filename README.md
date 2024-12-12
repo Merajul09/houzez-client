@@ -4,7 +4,7 @@ Live site:
 
 - [Houzez-netlify](https://mh-assignment-twelve.netlify.app/)
 
-- [Server Repo](https://github.com/programming-hero-web-course1/b9a12-server-side-Merajul09)
+- [Server Repo](https://github.com/Merajul09/houzez-server)
 
 Admin username: ami@tmi.com
 Admin pass: 1234Az
@@ -12,6 +12,7 @@ Agent username: ami@tmi2.com
 Agent pass: 1234Az
 
 Our website features:
+
 - User Profile Management
 - Mobile Compatibility
 - High-Quality Visuals
